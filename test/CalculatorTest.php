@@ -5,7 +5,7 @@ use App\Libraries\Calculator;
 class CalculatorTest extends PHPUnit_Framework_TestCase 
 {
 	public function testAdd() {
-		$c = new App\Libraries\Calculator;
+		$c = new Calculator;
 
 		$this->assertEquals(0, $c->add(0, 0));
 		$this->assertEquals(1, $c->add(0, 1));
