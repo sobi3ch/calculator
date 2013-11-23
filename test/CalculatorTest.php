@@ -7,37 +7,49 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
 	public function testAdd() {
 		$c = new Calculator;
 
-		# integer numbers
-		$this->assertEquals(0, $c->add(0, 0));
-		$this->assertEquals(1, $c->add(0, 1));
-		$this->assertEquals(2, $c->add(1, 1));
-		$this->assertEquals(0, $c->add(1, -1));
-		$this->assertEquals(-1, $c->add(0, -1));
-		$this->assertEquals(-2, $c->add(-1, -1));
-		$this->assertEquals(60000, $c->add(30000, 30000));
-		$this->assertEquals(-60000, $c->add(-30000, -30000));
+		$values = [
+			# integer numbers
+			[0, 0, 0],
+			[1, 0, 1],
+			[2, 1, 1],
+			[0, 1, -1],
+			[-1, 0, -1],
+			[-2, -1, -1],
+			[60000, 30000, 30000],
+			[-60000, -30000, -30000],
 
-		# non integer numbers
-		$this->assertEquals(2.8, $c->add(1.5, 1.3));
+			# non integer numbers
+			[2.8, 1.5, 1.3]
+		];
 
+		foreach ($values as $v) {
+			$this->assertEquals($v[0], $c->add($v[1], $v[2]));
+		}
 	}
 
 	public function testSubtract()
 	{
 		$c = new Calculator;
 
-		$this->assertEquals(0, $c->subtract(0, 0));
-		$this->assertEquals(-1, $c->subtract(0, 1));
-		$this->assertEquals(0, $c->subtract(1, 1));
-		$this->assertEquals(2, $c->subtract(1, -1));
-		$this->assertEquals(1, $c->subtract(0, -1));
-		$this->assertEquals(0, $c->subtract(-1, -1));
-		$this->assertEquals(0, $c->subtract(30000, 30000));
-		$this->assertEquals(0, $c->subtract(-30000, -30000));
-		$this->assertEquals(60000, $c->subtract(30000, -30000));
+		$values = [
+			# integer number
+			[0, 0, 0],
+			[-1, 0, 1],
+			[0, 1, 1],
+			[2, 1, -1],
+			[1, 0, -1],
+			[0, -1, -1],
+			[0, 30000, 30000],
+			[0, -30000, -30000],
+			[60000, 30000, -30000],
 
-		# non integer numbers
-		$this->assertEquals(0.2, $c->subtract(1.5, 1.3));
+			# non integer numbers
+			[0.2, 1.5, 1.3]
+		];
+
+		foreach ($values as $v) {
+			$this->assertEquals($v[0], $c->subtract($v[1], $v[2]));
+		}
 	}
 
 	/**
