@@ -1,14 +1,11 @@
 <?php
 
-require 'vendor/autoload.php';
-
-
-use App\Calculator;
+use App\Libraries\Calculator;
 
 class CalculatorTest extends PHPUnit_Framework_TestCase 
 {
 	public function testAdd() {
-		$c = new Calculator;
+		$c = new App\Libraries\Calculator;
 
 		$this->assertEquals(0, $c->add(0, 0));
 		$this->assertEquals(1, $c->add(0, 1));

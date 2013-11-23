@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Calculator' => $baseDir . '/app/libraries/calculator.php',
+    'App\\Libraries\\Calculator' => $baseDir . '/app/libraries/calculator.php',
 );
