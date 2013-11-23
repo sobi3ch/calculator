@@ -31,4 +31,13 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(0, $c->subtract(-30000, -30000));
 		$this->assertEquals(60000, $c->subtract(30000, -30000));
 	}
+
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testThrowsExceptionIfNonNumberIsPassed()
+	{
+		$c = new Calculator;
+		$c->add('a', array());
+	}
 }
