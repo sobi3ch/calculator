@@ -8,14 +8,29 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
 {
 	public function testAdd() {
 		$c = new Calculator;
-		$result = $c->add(5, 10);
-		$this->assertEquals(15, $result);
+
+		$this->assertEquals(0, $c->add(0, 0));
+		$this->assertEquals(1, $c->add(0, 1));
+		$this->assertEquals(2, $c->add(1, 1));
+		$this->assertEquals(0, $c->add(1, -1));
+		$this->assertEquals(-1, $c->add(0, -1));
+		$this->assertEquals(-2, $c->add(-1, -1));
+		$this->assertEquals(60000, $c->add(30000, 30000));
+		$this->assertEquals(-60000, $c->add(-30000, -30000));
 	}
 
 	public function testSubtract()
 	{
 		$c = new Calculator;
-		$result = $c->subtract(20, 8);
-		$this->assertEquals(12, $result);
+
+		$this->assertEquals(0, $c->subtract(0, 0));
+		$this->assertEquals(-1, $c->subtract(0, 1));
+		$this->assertEquals(0, $c->subtract(1, 1));
+		$this->assertEquals(2, $c->subtract(1, -1));
+		$this->assertEquals(1, $c->subtract(0, -1));
+		$this->assertEquals(0, $c->subtract(-1, -1));
+		$this->assertEquals(0, $c->subtract(30000, 30000));
+		$this->assertEquals(0, $c->subtract(-30000, -30000));
+		$this->assertEquals(60000, $c->subtract(30000, -30000));
 	}
 }
