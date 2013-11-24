@@ -4,6 +4,11 @@ use App\Libraries\Calculator;
 
 class CalculatorTest extends PHPUnit_Framework_TestCase 
 {
+	public function setUp()
+	{
+		$this->calc = new Calculator;
+	}
+
 	public function inputForTestAdd()
 	{
 		return [
@@ -27,8 +32,7 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testAdd($result, $a, $b) 
 	{
-		$c = new Calculator;
-		$this->assertEquals($result, $c->add($a, $b));
+		$this->assertEquals($result, $this->calc->add($a, $b));
 	}
 
 
@@ -58,7 +62,6 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testSubtract($result, $a, $b)
 	{
-		$c = new Calculator;
-		$this->assertEquals($result, $c->subtract($a, $b));
+		$this->assertEquals($result, $this->calc->subtract($a, $b));
 	}
 }
