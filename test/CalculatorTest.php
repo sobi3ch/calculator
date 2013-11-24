@@ -4,10 +4,9 @@ use App\Libraries\Calculator;
 
 class CalculatorTest extends PHPUnit_Framework_TestCase 
 {
-	public function testAdd() {
-		$c = new Calculator;
-
-		$values = [
+	public function inputForTestAdd()
+	{
+		return [
 			# integer numbers
 			[0, 0, 0],
 			[1, 0, 1],
@@ -21,43 +20,45 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
 			# non integer numbers
 			[2.8, 1.5, 1.3]
 		];
-
-		foreach ($values as $v) {
-			$this->assertEquals($v[0], $c->add($v[1], $v[2]));
-		}
-	}
-
-	public function testSubtract()
-	{
-		$c = new Calculator;
-
-		$values = [
-			# integer number
-			[0, 0, 0],
-			[-1, 0, 1],
-			[0, 1, 1],
-			[2, 1, -1],
-			[1, 0, -1],
-			[0, -1, -1],
-			[0, 30000, 30000],
-			[0, -30000, -30000],
-			[60000, 30000, -30000],
-
-			# non integer numbers
-			[0.2, 1.5, 1.3]
-		];
-
-		foreach ($values as $v) {
-			$this->assertEquals($v[0], $c->subtract($v[1], $v[2]));
-		}
 	}
 
 	/**
-	 * @expectedException InvalidArgumentException
+	 * @dataProvider inputForTestAdd
 	 */
-	public function testThrowsExceptionIfNonNumberIsPassed()
+	public function testAdd($result, $a, $b) 
 	{
 		$c = new Calculator;
-		$c->add('a', array());
+		$this->assertEquals($result, $c->add($a, $b));
+	}
+
+
+
+
+	public function inputFortestSubtract()
+	{
+	    return [
+	        # integer number
+	        [0, 0, 0],
+	        [-1, 0, 1],
+	        [0, 1, 1],
+	        [2, 1, -1],
+	        [1, 0, -1],
+	        [0, -1, -1],
+	        [0, 30000, 30000],
+	        [0, -30000, -30000],
+	        [60000, 30000, -30000],
+
+	        # non integer numbers
+	        [0.2, 1.5, 1.3]
+	    ];
+	}
+
+	/**
+	 * @dataProvider inputFortestSubtract
+	 */
+	public function testSubtract($result, $a, $b)
+	{
+		$c = new Calculator;
+		$this->assertEquals($result, $c->subtract($a, $b));
 	}
 }
