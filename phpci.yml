@@ -2,5 +2,5 @@ build_settings:
   verbose: false
 
 setup:
-  shell:
+  shellx:
     command: "echo dziala setup"
